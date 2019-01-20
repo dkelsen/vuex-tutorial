@@ -1,10 +1,25 @@
 <template>
   <div>
-    <button>Increment</button>
-    <button>Decrement</button>
+    <button @click="incrementAction(2)">Increment</button>
+    <button @click="decrementAction(2)">Decrement</button>
+    <p>{{ counter }}</p>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapActions } from 'vuex';
+
+export default {
+  computed: {
+    counter() {
+      return this.$store.getters.getCounter
+    }
+  },
+  methods: {
+    ...mapActions({
+      incrementAction: 'increment',
+      decrementAction: 'decrement'
+    })
+  }
+};
 </script>
